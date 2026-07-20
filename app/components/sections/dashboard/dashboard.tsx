@@ -186,19 +186,9 @@ export const DashboardSection = ({
 									value={userProfile.participant_type}
 								/>
 								<InfoCard
-									icon={<Search className="w-6 h-6" />}
-									label="Offering / Searching Expertise"
-									value={
-										userProfile.expertise !== null &&
-										userProfile.expertise.length > 0
-											? userProfile.expertise.join(", ")
-											: userProfile.job_category
-									}
-								/>
-								<InfoCard
-									icon={<Search className="w-6 h-6" />}
-									label="Looking for"
-									value={userProfile.looking_for}
+    								icon={<Search className="w-6 h-6" />}
+    								label="Job Category"
+    								value={userProfile.job_category}
 								/>
 							</div>
 						</div>
