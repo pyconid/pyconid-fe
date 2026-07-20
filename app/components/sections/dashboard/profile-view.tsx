@@ -77,7 +77,7 @@ export const ProfileViewSection = ({
 					<div className="px-6 lg:px-12 py-8 pb-10 flex flex-col gap-4">
 						<h2 className="text-[34px] font-bold">Profile</h2>
 
-						{/* Info Cards Row 1 */}
+						{/* Info Cards */}
 						<div className="flex flex-wrap gap-8">
 							<InfoCard
 								icon={<Briefcase className="w-6 h-6" />}
@@ -94,25 +94,11 @@ export const ProfileViewSection = ({
 								label="Participant Type"
 								value={userProfile.participant_type}
 							/>
-						</div>
-
-						{/* Info Cards Row 2 */}
-						<div className="flex flex-wrap gap-8 pt-4">
 							<InfoCard
-								icon={<Search className="w-6 h-6" />}
-								label="Offering / Searching Expertise"
-								value={
-									userProfile.expertise !== null &&
-									userProfile.expertise.length > 0
-										? userProfile.expertise.join(", ")
-										: userProfile.job_category
-								}
-							/>
-							<InfoCard
-								icon={<Search className="w-6 h-6" />}
-								label="Looking for"
-								value={userProfile.looking_for}
-							/>
+        						icon={<Search className="w-6 h-6" />}
+        						label="Job Category"
+        						value={userProfile.job_category}
+    						/>
 						</div>
 
 						{/* About */}
