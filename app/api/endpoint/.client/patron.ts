@@ -5,6 +5,10 @@ export const getPatrons = async () => {
 	return await httpClient.get("/patron/");
 };
 
+export const getPatronUsers = async () => {
+	return await httpClient.get("/patron/user/");
+};
+
 export const postPatron = async ({ formData }: { formData: FormData }) => {
 	return await httpClient.post("/patron/", {
 		body: formData,
@@ -35,4 +39,8 @@ export const deletePatron = async ({ patron_id }: { patron_id: string }) => {
 
 export const getPatronImage = async ({ patron_id }: { patron_id: string }) => {
 	return await httpClient.get(`/patron/${patron_id}/image/`);
+};
+
+export const getPatronUserImage = async ({ user_id }: { user_id: string }) => {
+	return await httpClient.get(`/patron/user/${user_id}/image/`);
 };
