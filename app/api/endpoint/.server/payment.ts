@@ -17,14 +17,17 @@ export const createPayment = async ({
 
 export const getPaymentVoucherValidate = async ({
 	code,
+	ticket_id,
 	request,
 }: {
 	code: string;
+	ticket_id: string;
 	request: Request;
 }) => {
 	return await http.get("/payment/voucher/validate", {
 		params: {
 			code,
+			ticket_id,
 		},
 		request,
 	});

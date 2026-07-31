@@ -41,10 +41,7 @@ export const onAvatarError = (
 	evt: React.SyntheticEvent<HTMLImageElement, Event>,
 ) => {
 	const element = evt.target as HTMLImageElement;
-	console.log("🔴 Image load failed:", element.src);
-	console.log("🔄 Setting fallback to:", "/images/default-avatar.webp");
 	element.onerror = () => {
-		console.log("❌ Fallback image ALSO failed to load!");
 		return null;
 	};
 	element.src = "/images/default-avatar.webp";

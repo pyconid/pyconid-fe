@@ -19,6 +19,7 @@ export interface OurTeamCardProps {
 	github?: string;
 	name?: string;
 	bio?: string;
+	onClick?: () => void;
 }
 
 export const OurTeamCard = ({
@@ -33,12 +34,27 @@ export const OurTeamCard = ({
 	facebook_username,
 	linkedin_username,
 	website,
+	onClick,
 }: OurTeamCardProps) => {
 	return (
 		<div
+			{...(onClick
+				? {
+						onClick,
+						onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
+							if (e.key === "Enter" || e.key === " ") {
+								e.preventDefault();
+								onClick();
+							}
+						},
+						role: "button",
+						tabIndex: 0,
+					}
+				: {})}
 			className={cn(
 				"w-full max-w-[340px] mx-auto flex flex-col font-sans bg-surface text-white drop-shadow-md",
 				"[clip-path:polygon(0_0,100%_0,100%_100%,18%_100%,0_85%)] transition-transform hover:-translate-y-1",
+				onClick && "cursor-pointer",
 			)}
 		>
 			{/* Top Half - Avatar & Logo */}

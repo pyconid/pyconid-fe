@@ -100,18 +100,13 @@ export const ProfileViewSection = ({
 						<div className="flex flex-wrap gap-8 pt-4">
 							<InfoCard
 								icon={<Search className="w-6 h-6" />}
-								label="Offering / Searching Expertise"
+								label="Job Category"
 								value={
 									userProfile.expertise !== null &&
 									userProfile.expertise.length > 0
 										? userProfile.expertise.join(", ")
 										: userProfile.job_category
 								}
-							/>
-							<InfoCard
-								icon={<Search className="w-6 h-6" />}
-								label="Looking for"
-								value={userProfile.looking_for}
 							/>
 						</div>
 

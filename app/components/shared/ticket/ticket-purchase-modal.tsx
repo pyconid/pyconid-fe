@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetcher } from "react-router";
 import type { TicketType } from "~/api/schema/ticket";
 import { formatRupiah } from "~/lib/utils";
@@ -54,6 +54,14 @@ export const TicketPurchaseModal = ({
 	const voucherResult = fetcher.data?.apply_voucher;
 	const buyTicketResult = fetcher.data?.buy_ticket;
 
+	// Reset voucher state when switching to a different ticket
+	useEffect(() => {
+		if (!ticket) return;
+		setVoucherCode("");
+		setVoucherState("empty");
+		setDiscount(0);
+	}, [ticket]);
+
 	if (!isOpen || !ticket) return null;
 
 	const total = ticket.price - discount;
@@ -73,7 +81,11 @@ export const TicketPurchaseModal = ({
 		if (!voucherCode.trim()) return;
 		setVoucherState("verifying");
 		fetcher.submit(
-			{ intent: "apply-voucher", voucher_code: voucherCode.trim() },
+			{
+				intent: "apply-voucher",
+				voucher_code: voucherCode.trim(),
+				ticket_id: ticket.id,
+			},
 			{ method: "post" },
 		);
 	};

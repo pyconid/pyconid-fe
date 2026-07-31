@@ -1,8 +1,10 @@
 import { MailIcon } from "lucide-react";
 import { cn, onAvatarError } from "~/lib/utils";
+import { Facebook } from "../icons/facebook";
 import { Instagram } from "../icons/instagram";
 import { Linkedin } from "../icons/linkedin";
 import { Twitter } from "../icons/twitter";
+import { Earth } from "../icons/website";
 
 export interface SpeakerCardProps {
 	name: string;
@@ -10,9 +12,13 @@ export interface SpeakerCardProps {
 	company: string;
 	instagram?: string;
 	twitter?: string;
+	facebook?: string;
 	linkedin?: string;
+	website?: string;
 	email?: string;
+	github?: string;
 	image?: string;
+	onClick?: () => void;
 }
 
 export const SpeakerCard = ({
@@ -21,16 +27,23 @@ export const SpeakerCard = ({
 	company,
 	instagram,
 	twitter,
+	facebook,
 	linkedin,
+	website,
 	email,
+	github,
 	image,
+	onClick,
 }: SpeakerCardProps) => {
-	const hasSocialLinks = instagram || twitter || linkedin || email;
+	const hasSocialLinks =
+		instagram || twitter || facebook || linkedin || website || github || email;
 
 	return (
-		<div
+		<button
+			onClick={onClick}
+			type="button"
 			className={cn(
-				"w-full max-w-[340px] mx-auto drop-shadow-md bg-foreground transition-transform p-0.5 hover:-translate-y-1",
+				"w-[340px] mx-auto drop-shadow-md bg-foreground transition-transform p-0.5 hover:-translate-y-1",
 				"[clip-path:polygon(42%_0,100%_0,100%_100%,42%_100%,36%_94%,0_94%,0_12%,8%_5%,36%_5%)]",
 			)}
 		>
@@ -46,15 +59,14 @@ export const SpeakerCard = ({
 						alt="PyCon ID 2026"
 						className="absolute top-2 right-2 h-8 z-10"
 					/>
-					{image && (
-						<img
-							src={image}
-							alt={name}
-							className="w-full h-112 object-cover object-bottom z-0"
-							loading="lazy"
-							onError={onAvatarError}
-						/>
-					)}
+
+					<img
+						src={image ? image : "/images/default-avatar.webp"}
+						alt={name}
+						className="w-full h-112 object-cover object-bottom z-0"
+						loading="lazy"
+						onError={onAvatarError}
+					/>
 
 					{/* White Name Banner */}
 					<div
@@ -122,6 +134,21 @@ export const SpeakerCard = ({
 									</a>
 								</div>
 							)}
+							{facebook && (
+								<div className="bg-background overflow-hidden p-0.5 [clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]">
+									<a
+										href={facebook}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={cn(
+											"flex items-center justify-center size-9 bg-foreground hover:bg-white hover:text-surface transition-colors",
+											"[clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]",
+										)}
+									>
+										<Facebook className="size-4" />
+									</a>
+								</div>
+							)}
 							{linkedin && (
 								<div className="bg-background overflow-hidden p-0.5 [clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]">
 									<a
@@ -134,6 +161,40 @@ export const SpeakerCard = ({
 										)}
 									>
 										<Linkedin className="size-4" />
+									</a>
+								</div>
+							)}
+							{website && (
+								<div className="bg-background overflow-hidden p-0.5 [clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]">
+									<a
+										href={website}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={cn(
+											"flex items-center justify-center size-9 bg-foreground hover:bg-white hover:text-surface transition-colors",
+											"[clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]",
+										)}
+									>
+										<Earth className="size-4" />
+									</a>
+								</div>
+							)}
+							{github && (
+								<div className="bg-background overflow-hidden p-0.5 [clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]">
+									<a
+										href={github}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={cn(
+											"flex items-center justify-center size-9 bg-foreground hover:bg-white hover:text-surface transition-colors",
+											"[clip-path:polygon(20%_0,100%_0%,100%_80%,80%_100%,0_100%,0_20%)]",
+										)}
+									>
+										<img
+											src="/svg/github.svg"
+											alt="Github"
+											className="size-4 brightness-0 invert"
+										/>
 									</a>
 								</div>
 							)}
@@ -156,6 +217,6 @@ export const SpeakerCard = ({
 					)}
 				</div>
 			</div>
-		</div>
+		</button>
 	);
 };

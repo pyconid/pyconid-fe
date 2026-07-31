@@ -137,8 +137,10 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
 	if (intent === "apply-voucher") {
 		const voucher_code = formData.get("voucher_code") as string;
+		const ticket_id = formData.get("ticket_id") as string;
 		const res = await getPaymentVoucherValidate({
 			code: voucher_code,
+			ticket_id: ticket_id ?? "",
 			request,
 		});
 

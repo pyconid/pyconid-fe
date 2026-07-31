@@ -1,4 +1,7 @@
-import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { getSpeakerSchedules } from "~/api/endpoint/.client/schedule";
+import { ScheduleByIdSchema } from "~/api/schema/schedule";
 import type { SpeakerPublicType } from "~/api/schema/speaker";
 import {
 	OurTeamCard as OtherSpeakersCard,
@@ -10,12 +13,12 @@ import {
 } from "~/components/shared/card/speaker";
 import { Hero } from "~/components/shared/hero/hero";
 import { cn, parseSpeakerImage } from "~/lib/utils";
+import { DetailSpeakerModal } from "./detail-speaker-modal";
 
 interface SpeakersSectionProps {
 	speakers: SpeakerPublicType[];
 }
 
-// Helper function to get full name
 const getFullName = (speaker: SpeakerPublicType) => {
 	if (!speaker?.user) return "Unknown Speaker";
 	const firstName = speaker.user.first_name || "";
@@ -24,10 +27,39 @@ const getFullName = (speaker: SpeakerPublicType) => {
 };
 
 export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
+	const [selectedSpeaker, setSelectedSpeaker] =
+		useState<SpeakerPublicType | null>(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const { data: speakerSchedules } = useQuery({
+		queryKey: ["speaker-schedules", selectedSpeaker?.id],
+		queryFn: async () => {
+			if (!selectedSpeaker) return [];
+			const res = await getSpeakerSchedules({ id: selectedSpeaker.id });
+			const json = await res.json();
+			return ScheduleByIdSchema.array().parseAsync(json);
+		},
+		enabled: !!selectedSpeaker,
+	});
+
+	const handleSpeakerClick = (speaker: SpeakerPublicType) => {
+		setSelectedSpeaker(speaker);
+		setIsModalOpen(true);
+	};
+
 	const parsedSpeakers = useMemo(() => {
-		const keynote: (SpeakerCardProps & { id: string })[] = [];
-		const short: (OurTeamCardProps & { id: string })[] = [];
-		const regular: (OurTeamCardProps & { id: string })[] = [];
+		const keynote: (SpeakerCardProps & {
+			id: string;
+			original: SpeakerPublicType;
+		})[] = [];
+		const short: (OurTeamCardProps & {
+			id: string;
+			original: SpeakerPublicType;
+		})[] = [];
+		const regular: (OurTeamCardProps & {
+			id: string;
+			original: SpeakerPublicType;
+		})[] = [];
 
 		if (speakers?.length) {
 			speakers.forEach((speaker) => {
@@ -35,6 +67,7 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 				if (speakerType?.includes("keynote")) {
 					return keynote.push({
 						id: speaker.id,
+						original: speaker,
 						name: getFullName(speaker),
 						description: speaker.user?.job_title || "",
 						company: speaker.user?.company || "",
@@ -51,8 +84,12 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 					});
 				}
 
-				const parsedItem: OurTeamCardProps & { id: string } = {
+				const parsedItem: OurTeamCardProps & {
+					id: string;
+					original: SpeakerPublicType;
+				} = {
 					id: speaker.id,
+					original: speaker,
 					name: getFullName(speaker),
 					email: speaker?.user?.email || undefined,
 					profile_picture: parseSpeakerImage({ id: speaker.id }),
@@ -93,6 +130,16 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 
 	return (
 		<section className="bg-background relative w-full overflow-x-hidden min-h-screen">
+			<DetailSpeakerModal
+				isOpen={isModalOpen}
+				onClose={() => {
+					setIsModalOpen(false);
+					setSelectedSpeaker(null);
+				}}
+				scheduleDetail={speakerSchedules ?? null}
+				speakerDetail={selectedSpeaker}
+			/>
+
 			<Hero text="Our Speakers" className="lg:pb-44" />
 
 			<div className="py-20">
@@ -123,9 +170,16 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 					</div>
 
 					<div className="flex justify-center">
-						<div className="grid grid-cols-1 lg:gap-12 gap-8 w-full max-w-4xl">
+						<div className="flex lg:gap-12 gap-8 w-full max-w-4xl">
 							{parsedSpeakers.keynote.map((speaker) => (
-								<SpeakerCard key={speaker.id} {...speaker} />
+								<button
+									key={speaker.id}
+									type="button"
+									onClick={() => handleSpeakerClick(speaker.original)}
+									className="cursor-pointer text-left w-full"
+								>
+									<SpeakerCard {...speaker} />
+								</button>
 							))}
 						</div>
 					</div>
@@ -173,7 +227,14 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 							>
 								{organizer.data.length > 0 ? (
 									organizer.data.map((item) => (
-										<OtherSpeakersCard key={item.id} {...item} />
+										<button
+											key={item.id}
+											type="button"
+											onClick={() => handleSpeakerClick(item.original)}
+											className="cursor-pointer text-left w-full"
+										>
+											<OtherSpeakersCard {...item} />
+										</button>
 									))
 								) : (
 									<div className="col-span-full text-center text-gray-500 py-8 h-[300px] flex items-center justify-center">

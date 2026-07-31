@@ -28,6 +28,7 @@ export const createVoucher = async ({
 			emails: string[];
 		} | null;
 		is_active: boolean;
+		ticket_ids: string[] | null;
 	};
 }) => {
 	return await http.post("/voucher/", {
@@ -52,6 +53,7 @@ export const updateVoucher = async ({
 			emails: string[];
 		} | null;
 		is_active: boolean;
+		ticket_ids: string[] | null;
 	};
 	id: string;
 }) => {

@@ -32,6 +32,10 @@ export const getSchedule = async ({
 export const getScheduleById = async ({ id }: { id: string }) => {
 	return await httpClient.get(`/schedule/${id}`);
 };
+
+export const getSpeakerSchedules = async ({ id }: { id: string }) => {
+	return await httpClient.get(`/speaker/${id}/schedule/`);
+};
 export const getScheduleStream = async ({ id }: { id: string }) => {
 	return await httpClient.get(`/schedule/${id}/stream`);
 };

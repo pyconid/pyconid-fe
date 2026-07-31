@@ -12,6 +12,7 @@ export const VoucherResultSchema = z.object({
 	email_whitelist: VoucherEmailWhitelistSchema.nullable(),
 	quota: z.number().nullable(),
 	is_active: z.boolean().nullable(),
+	ticket_ids: z.array(z.string()).nullable().optional(),
 });
 
 export const VoucherListSchema = z.array(VoucherResultSchema);

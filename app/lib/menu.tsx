@@ -7,7 +7,7 @@ const MENU = [
 	// { name: "Speakers", href: "/speakers" },
 	{ name: "Sponsors", href: "/call-for-sponsor" },
 	{ name: "Code of Conduct", href: "/code-of-conduct" },
-	// { name: "Organizers", href: "/organizers" },
+	{ name: "Organizers", href: "/organizers" },
 ];
 
 export default MENU;

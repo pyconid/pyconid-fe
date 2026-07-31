@@ -11,6 +11,9 @@ export const organizerDetailUserSchema = z.object({
 	last_name: z.string().nullable(),
 	username: z.string().nullable(),
 	bio: z.string().nullable(),
+	job_title: z.string().nullable().optional(),
+	job_category: z.string().nullable().optional(),
+	company: z.string().nullable().optional(),
 	profile_picture: z.string().nullable(),
 	email: z.string().nullable(),
 	website: z.string().nullable(),
@@ -18,6 +21,7 @@ export const organizerDetailUserSchema = z.object({
 	linkedin_username: z.string().nullable(),
 	instagram_username: z.string().nullable(),
 	twitter_username: z.string().nullable(),
+	github_username: z.string().nullable().optional(),
 });
 
 export const organizerDetailSchema = z.object({
