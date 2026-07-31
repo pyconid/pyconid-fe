@@ -97,7 +97,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		type,
 		email_whitelist,
 		is_active: is_active,
-		ticket_ids: ticketIds.length > 0 ? ticketIds : null,
+		ticket_ids: ticketIds.length > 0 ? ticketIds : [],
 	};
 	console.log(id);
 	console.log(json);
@@ -159,9 +159,9 @@ export default function VoucherCreatePage(
 		ticket_ids: TicketOption[];
 	}>({
 		ticket_ids:
-			voucher.ticket_ids?.map((id) => ({
-				label: id,
-				value: id,
+			voucher.tickets?.map((item) => ({
+				label: item.name,
+				value: item.id,
 			})) ?? [],
 	});
 

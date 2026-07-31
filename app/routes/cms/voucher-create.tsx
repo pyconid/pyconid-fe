@@ -76,7 +76,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		type,
 		email_whitelist,
 		is_active: is_active,
-		ticket_ids: ticketIds.length > 0 ? ticketIds : null,
+		ticket_ids: ticketIds.length > 0 ? ticketIds : [],
 	};
 
 	console.log(json);
