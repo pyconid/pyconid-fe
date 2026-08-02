@@ -64,7 +64,7 @@ export const TicketPurchaseModal = ({
 
 	if (!isOpen || !ticket) return null;
 
-	const total = ticket.price - discount;
+	const total = ticket.price - discount < 0 ? 0 : ticket.price - discount;
 
 	const handleVoucherChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
