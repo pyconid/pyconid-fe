@@ -4,7 +4,7 @@ const MENU = [
 	{ name: "Tickets", href: "/ticket" },
 	// { name: "Proposals", href: "/call-for-proposal" },
 	{ name: "Schedules", href: "/schedules" },
-	// { name: "Speakers", href: "/speakers" },
+	{ name: "Speakers", href: "/speakers" },
 	{ name: "Sponsors", href: "/call-for-sponsor" },
 	{ name: "Code of Conduct", href: "/code-of-conduct" },
 	{ name: "Organizers", href: "/organizers" },
