@@ -2,7 +2,7 @@ import { getPatronUsers } from "~/api/endpoint/.server/patron";
 import { patronUserResponseSchema } from "~/api/schema/patron";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
-// import { CommunitySection } from "~/components/sections/home/community";
+import { CommunitySection } from "~/components/sections/home/community";
 import { HeroSection } from "~/components/sections/home/hero";
 import { PatronSection } from "~/components/sections/home/patron";
 // import { OurTeamSection } from "~/components/sections/home/our-team";
@@ -44,7 +44,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 			<SpeakersSection />
 			<SponsorSection />
 			<PatronSection patrons={loaderData.patrons} />
-			{/* <CommunitySection /> */}
+			<CommunitySection />
 			{/* <OurTeamSection /> */}
 			<Footer />
 		</main>

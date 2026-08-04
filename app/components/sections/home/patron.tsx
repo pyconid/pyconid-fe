@@ -48,11 +48,11 @@ export const PatronSection = ({ patrons }: PatronSectionProps) => {
 	if (patrons.length === 0) return null;
 
 	return (
-		<section className="px-5 py-16 sm:py-28" aria-labelledby="patron-heading">
-			<div className="container mx-auto px-5 py-12 sm:px-12 sm:py-16">
+		<section className="px-5 py-6 sm:py-6" aria-labelledby="patron-heading">
+			<div className="container mx-auto px-5 py-6 sm:px-12 sm:py-6">
 				<h2
 					id="patron-heading"
-					className="mb-12 text-center font-display text-3xl font-semibold text-foreground sm:mb-16 sm:text-4xl"
+					className="mb-12 text-center text-3xl font-semibold text-foreground sm:mb-16 sm:text-4xl"
 				>
 					Thanks to our Patron
 				</h2>
@@ -77,7 +77,7 @@ export const PatronSection = ({ patrons }: PatronSectionProps) => {
 										className="h-full w-full object-cover"
 									/>
 								</div>
-								<h3 className="text-center font-display text-xl font-semibold text-foreground">
+								<h3 className="text-center text-xl font-semibold text-foreground">
 									{name}
 								</h3>
 							</article>
