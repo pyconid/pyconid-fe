@@ -75,7 +75,7 @@ export const SchedulesSection = ({
 	).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
 	const [open, setOpen] = useState(false);
-	const [selectedDate, setSelectedDate] = useState(sortedDates[0]);
+	const [selectedDate, setSelectedDate] = useState(sortedDates[1]);
 	const [selectedScheduleId, setSelectedScheduleId] = useState<
 		ScheduleItemType["id"] | null
 	>(null);
@@ -94,7 +94,7 @@ export const SchedulesSection = ({
 
 	useEffect(() => {
 		if (sortedDates.length > 0 && !selectedDate) {
-			setSelectedDate(sortedDates[0]);
+			setSelectedDate(sortedDates[1]);
 		}
 	}, [sortedDates, selectedDate]);
 
