@@ -125,7 +125,7 @@ export const OrganizersSection = ({ organizers }: OrganizersSectionProps) => {
 			{ name: "Website", items: website },
 			{ name: "Logistic & Hospitality", items: experience },
 			{ name: "Publication & Design", items: creative },
-			{ name: "Partnership", items: partnership },
+			{ name: "Moderator", items: partnership },
 		];
 	}, [organizers, organizers.length]);
 
