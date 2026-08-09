@@ -41,6 +41,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 		request,
 		id: scheduleDetail.stream.id,
 	});
+
+	if (dataStreamDetail.status === 401) {
+		return await authenticator.logout(request, { redirectTo: "/login" });
+	}
+
 	if (dataStreamDetail.status !== 200) {
 		return redirect("/not-found");
 	}
