@@ -18,9 +18,9 @@ export default [
 	route("/privacy-policy", "routes/privacy-policy.tsx"),
 	route("/internal-error", "routes/internal-error.tsx"),
 	route("/everybody-pays", "routes/everybody-pays.tsx"),
-	route("/ticket", "routes/ticket.tsx"),
-	route("/tickets", "routes/tickets.tsx"),
-	route("/tiket", "routes/tiket.tsx"),
+	// route("/ticket", "routes/ticket.tsx"),
+	// route("/tickets", "routes/tickets.tsx"),
+	// route("/tiket", "routes/tiket.tsx"),
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
 	route("/schedules", "routes/schedules.tsx"),
 	route("/schedule/:id", "routes/streaming.tsx"),
@@ -31,9 +31,9 @@ export default [
 	route("/organizer", "routes/organizer.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
-		route("/register", "routes/register.tsx"),
-		route("/forgot-password", "routes/forgot-password.tsx"),
-		route("/reset-password", "routes/reset-password.tsx"),
+		// route("/register", "routes/register.tsx"),
+		// route("/forgot-password", "routes/forgot-password.tsx"),
+		// route("/reset-password", "routes/reset-password.tsx"),
 	]),
 
 	...prefix("auth", [

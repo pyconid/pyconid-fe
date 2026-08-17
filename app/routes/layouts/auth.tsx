@@ -1,7 +1,7 @@
 // import type { FC } from "react";
 import {
 	// Form,
-	Link,
+	// Link,
 	type LoaderFunctionArgs,
 	Outlet,
 	redirect,
@@ -93,11 +93,11 @@ export default function AuthLayout() {
 
 						{pathnames.includes(pathname) && (
 							<>
-								<div className="flex items-center w-full h-7 my-8">
+								{/* <div className="flex items-center w-full h-7 my-8">
 									<div className="flex-grow border-t border-neutral-200"></div>
 									<span className="px-4 text-neutral-400">or</span>
 									<div className="flex-grow border-t border-neutral-200"></div>
-								</div>
+								</div> */}
 
 								<div className="w-full grid grid-cols-2 gap-4">
 									{/* <LoginOAuth
@@ -111,7 +111,7 @@ export default function AuthLayout() {
 											provider="github"
 										/> */}
 
-									<p className="col-span-full w-max mx-auto">
+									{/* <p className="col-span-full w-max mx-auto">
 										{pathname === "/login" ? (
 											<>
 												Belum memiliki akun?{" "}
@@ -130,7 +130,7 @@ export default function AuthLayout() {
 												</Link>
 											</>
 										)}
-									</p>
+									</p> */}
 								</div>
 
 								<div className="text-sm mt-12 text-center font-medium">
