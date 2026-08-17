@@ -1,3 +1,4 @@
+/*
 import { redirect } from "react-router";
 import {
 	createPayment,
@@ -195,3 +196,4 @@ export default function TicketPage({ loaderData }: Route.ComponentProps) {
 		</main>
 	);
 }
+*/

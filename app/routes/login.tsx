@@ -1,4 +1,4 @@
-import { Form, Link, useNavigation } from "react-router";
+import { Form, useNavigation } from "react-router";
 import { PasswordInput } from "~/components/shared/password-input/password-input";
 import { StrategyOptions } from "~/services/auth/strategy";
 import type { Route } from "./+types/login";
@@ -57,11 +57,12 @@ export default function Login(componentProps: Route.ComponentProps) {
 					{isSubmitting ? "Loading..." : "Login to Your Account"}
 				</button>
 
-				<p className="text-end">
-					Lupa password?{" "}
+				<p className="text-center">
+					{/* Lupa password?{" "}
 					<Link to="/forgot-password" className="underline text-secondary">
 						Reset Password
-					</Link>
+					</Link> */}
+					Forgot Password? please contact pycon@python.or.id
 				</p>
 			</Form>
 		</main>
