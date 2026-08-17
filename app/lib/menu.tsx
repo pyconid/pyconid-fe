@@ -1,7 +1,7 @@
 const MENU = [
 	{ name: "Home", href: "/" },
 	// { name: "About Us", href: "/about" },
-	{ name: "Tickets", href: "/ticket" },
+	// { name: "Tickets", href: "/ticket" },
 	// { name: "Proposals", href: "/call-for-proposal" },
 	{ name: "Schedules", href: "/schedules" },
 	{ name: "Speakers", href: "/speakers" },
