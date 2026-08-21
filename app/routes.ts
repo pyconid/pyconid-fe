@@ -13,6 +13,7 @@ export default [
 	route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
 	route("/code-of-conduct", "routes/code-of-conduct.tsx"),
 	route("/coc", "routes/coc.tsx"),
+	route("/docs", "routes/docs.tsx"),
 	route("/feedback", "routes/feedback.tsx"),
 	route("/terms-of-service", "routes/terms-of-service.tsx"),
 	route("/privacy-policy", "routes/privacy-policy.tsx"),
